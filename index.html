@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVINCEP — The Autonomy OS for the Real World</title>
-    <meta name="description" content="NOVINCEP builds a modular, resilient Autonomy OS for robotic systems operating under real-world constraints.">
+    <title>NOVINCEP — Systems Architecture for Complex Operations</title>
+    <meta name="description" content="NOVINCEP audits, designs, and rebuilds systems that respond intelligently to real-world signals—across robotics, customer operations, and beyond.">
     <style>
         * {
             margin: 0;
@@ -436,14 +436,14 @@
             margin-bottom: 2rem;
         }
 
-        .platform-list {
+        .applications-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .platform-item {
+        .application-item {
             padding: 2.5rem;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -451,12 +451,12 @@
             transition: all 0.3s;
         }
 
-        .platform-item:hover {
+        .application-item:hover {
             border-color: #1F6FEB;
             background: rgba(255, 255, 255, 0.05);
         }
 
-        .platform-tag {
+        .application-tag {
             display: inline-block;
             background: #1F6FEB;
             color: #fff;
@@ -465,6 +465,19 @@
             font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
+        }
+
+        .application-link {
+            color: #1F6FEB;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .application-link:hover {
+            transform: translateX(5px);
         }
 
         /* Success Modal */
@@ -740,7 +753,7 @@
             .section {
                 padding: 4rem 1rem;
             }
-            .value-grid, .platform-list {
+            .value-grid, .applications-list {
                 grid-template-columns: 1fr;
             }
         }
@@ -758,9 +771,9 @@
                 <span>NOVINCEP</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#os">Autonomy OS</a></li>
-                <li><a href="#platforms">Platforms</a></li>
-                <li><a href="#technology">Technology</a></li>
+                <li><a href="#approach">Approach</a></li>
+                <li><a href="#applications">Applications</a></li>
+                <li><a href="#principles">Principles</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact" class="cta-nav">Contact</a></li>
             </ul>
@@ -772,9 +785,9 @@
     <div class="mobile-menu">
         <button class="mobile-menu-close">×</button>
         <ul class="mobile-menu-links">
-            <li><a href="#os">Autonomy OS</a></li>
-            <li><a href="#platforms">Platforms</a></li>
-            <li><a href="#technology">Technology</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#applications">Applications</a></li>
+            <li><a href="#principles">Principles</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -783,16 +796,16 @@
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <h1>Autonomy that survives friction.</h1>
-            <p class="hero-subtitle">NOVINCEP builds the Autonomy OS that keeps robots thinking and acting when everything else stops working.</p>
+            <h1>Systems that respond to reality.</h1>
+            <p class="hero-subtitle">NOVINCEP audits, designs, and rebuilds complex systems that orchestrate intelligent behavior under real-world constraints.</p>
             <div class="hero-cta">
-                <a href="#contact" class="btn btn-primary">Request a Briefing</a>
-                <a href="#os" class="btn btn-secondary">Explore the OS</a>
+                <a href="#contact" class="btn btn-primary">Start a Diagnostic</a>
+                <a href="#applications" class="btn btn-secondary">See Applications</a>
             </div>
             <div class="social-proof">
-                <div class="proof-item">✓ Pilots with European robotics partners</div>
-                <div class="proof-item">✓ GPS-denied environments</div>
-                <div class="proof-item">✓ Cross-domain integration</div>
+                <div class="proof-item">✓ Event-driven architecture</div>
+                <div class="proof-item">✓ Real-time signal processing</div>
+                <div class="proof-item">✓ Multi-domain orchestration</div>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -800,150 +813,125 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="approach">
         <div class="section-header">
-            <h2>Built for the real world</h2>
-            <p>Edge-first autonomy that operates where connectivity and certainty don't exist</p>
+            <h2>How we think</h2>
+            <p>Systems-first architecture for adaptive, resilient operations</p>
         </div>
         <div class="value-grid">
             <div class="value-card">
-                <div class="value-icon">🛡️</div>
-                <h3>Fail-Operational Behaviors</h3>
-                <p>Graceful degradation ensures mission continuity. When conditions deteriorate, the system adapts instead of failing.</p>
+                <div class="value-icon">⚡</div>
+                <h3>Real-Time Signal Processing</h3>
+                <p>Systems that capture, interpret, and respond to behavioral signals instantly. No batch delays. No missed opportunities.</p>
             </div>
             <div class="value-card">
-                <div class="value-icon">⚡</div>
-                <h3>Edge Autonomy</h3>
-                <p>Local decision-making for instant adaptability. No cloud dependency means no single point of failure.</p>
+                <div class="value-icon">🛡️</div>
+                <h3>Adaptive Resilience</h3>
+                <p>When conditions change, systems adapt. Graceful degradation, failure recovery, and continuous recalibration—without manual intervention.</p>
             </div>
             <div class="value-card">
                 <div class="value-icon">🔧</div>
-                <h3>Plug-in Architecture</h3>
-                <p>Extend, replace, or integrate modules seamlessly. Build once, deploy everywhere.</p>
+                <h3>Modular Orchestration</h3>
+                <p>Composable architecture that lets you swap, upgrade, or isolate subsystems. Build once. Deploy across domains.</p>
             </div>
         </div>
     </section>
 
-    <section class="principles" id="technology">
+    <section class="principles" id="principles">
         <div class="section-header">
             <h2>Core Principles</h2>
             <p>Engineering philosophy that drives every decision</p>
         </div>
         <div class="principles-grid">
             <div class="principle-card">
-                <h3>Reliability First</h3>
-                <p>Autonomy doesn't start with intelligence. It starts with trust. Our system prioritizes deterministic behavior before any AI is introduced.</p>
+                <h3>System Logic First</h3>
+                <p>Understand event flows, behavioral triggers, and orchestration patterns. Tactics follow strategy.</p>
             </div>
             <div class="principle-card">
-                <h3>Modular by Design</h3>
-                <p>Swap, upgrade, or isolate any subsystem — perception, planning, control — without rewriting the entire codebase.</p>
+                <h3>Data Transparency</h3>
+                <p>Every claim backed by observable behavior and real-world deployment. No abstractions without evidence.</p>
             </div>
             <div class="principle-card">
-                <h3>Edge-First Execution</h3>
-                <p>NOVINCEP runs locally, not in the cloud. When connectivity drops, your system doesn't.</p>
+                <h3>Architectural Clarity</h3>
+                <p>Decisions are deliberate, documented, and debuggable. Magic is a liability.</p>
             </div>
             <div class="principle-card">
-                <h3>Continuous Adaptation</h3>
-                <p>The OS learns the environment, recalibrates, and recovers — seamlessly, without human intervention.</p>
+                <h3>Domain Flexibility</h3>
+                <p>Event-driven, behavioral-state, orchestration-focused thinking applies across robotics, customer operations, and beyond.</p>
             </div>
         </div>
     </section>
 
-    <section class="section" id="os">
+    <section class="section" id="applications">
         <div class="section-header">
-            <h2>The NOVINCEP Autonomy OS</h2>
-            <p>A modular, edge-first autonomy layer built for mission-critical environments</p>
+            <h2>Where this applies</h2>
+            <p>Same system architecture. Different domains.</p>
         </div>
-        <div class="value-grid">
-            <div class="value-card">
-                <h3>Perception</h3>
-                <p>Fuses visual, depth, radar, and inertial data into robust spatial understanding.</p>
+        <div class="applications-list">
+            <div class="application-item">
+                <div class="application-tag">Autonomy</div>
+                <h3>Autonomous Systems</h3>
+                <p>Robots operating edge-first, responding to sensor data in real time. Fail-operational, modular, deployed in harsh environments.</p>
+                <a href="#" class="application-link">Explore Autonomy OS →</a>
             </div>
-            <div class="value-card">
-                <h3>Decision</h3>
-                <p>Context-driven reasoning and behavior trees to plan optimal actions.</p>
+            <div class="application-item">
+                <div class="application-tag">Lifecycle</div>
+                <h3>Customer Lifecycle Systems</h3>
+                <p>B2B systems responding to behavioral signals in real time. Event-driven journeys, state-based orchestration, cross-channel coordination.</p>
+                <a href="#" class="application-link">Explore Lifecycle Systems →</a>
             </div>
-            <div class="value-card">
-                <h3>Control</h3>
-                <p>Real-time feedback ensures smooth, stable movement and adaptive handling.</p>
-            </div>
-            <div class="value-card">
-                <h3>Behaviors</h3>
-                <p>Intelligence layer that decides when to adapt, stop, or call for human attention.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="platforms">
-        <div class="section-header">
-            <h2>One OS. Many platforms.</h2>
-            <p>Ground, maritime, hybrid — deploy with minimal integration friction</p>
-        </div>
-        <div class="platform-list">
-            <div class="platform-item">
-                <div class="platform-tag">UGV</div>
-                <h3>Unmanned Ground Vehicles</h3>
-                <p>Built for industrial inspection, last-mile logistics, and smart agriculture.</p>
-            </div>
-            <div class="platform-item">
-                <div class="platform-tag">USV</div>
-                <h3>Unmanned Surface Vessels</h3>
-                <p>Environmental monitoring, surveying, and port automation.</p>
-            </div>
-            <div class="platform-item">
-                <div class="platform-tag">Custom</div>
-                <h3>Custom Integrations</h3>
-                <p>For robotics OEMs and R&D labs building unique systems.</p>
+            <div class="application-item">
+                <div class="application-tag">Custom</div>
+                <h3>Other Complex Operations</h3>
+                <p>Any system that orchestrates behavior based on real-time signals under constraints. Supply chain, workforce, financial systems, etc.</p>
+                <a href="#contact" class="application-link">Let's talk →</a>
             </div>
         </div>
     </section>
 
     <section class="cta-band">
-        <h2>From demos to deployment.</h2>
-        <p style="color: #808080; margin-bottom: 2rem; font-size: 1.2rem;">Build autonomy that survives reality.</p>
-        <a href="#contact" class="btn btn-primary">Talk to Our Team</a>
+        <h2>From diagnosis to deployment.</h2>
+        <p style="color: #808080; margin-bottom: 2rem; font-size: 1.2rem;">Build systems that work when it matters.</p>
+        <a href="#contact" class="btn btn-primary">Audit Your System</a>
     </section>
 
     <section class="section" id="about">
         <div class="section-header">
-            <h2>Autonomy that respects reality</h2>
-            <p>We build systems that don't just operate — they understand context, handle uncertainty, and recover from failure.</p>
+            <h2>What we deliver</h2>
+            <p>Structural clarity, not tactical recommendations</p>
         </div>
         <div class="value-grid">
             <div class="value-card">
-                <h3>Reality-first engineering</h3>
-                <p>Every decision tested against real-world constraints</p>
+                <h3>System diagnosis</h3>
+                <p>Map your architecture. Find where it breaks and why.</p>
             </div>
             <div class="value-card">
-                <h3>Modular over monolithic</h3>
-                <p>Composable systems that adapt to your needs</p>
+                <h3>Evidence-based design</h3>
+                <p>Rebuilds grounded in real behavior, not assumptions.</p>
             </div>
             <div class="value-card">
-                <h3>Transparency over magic</h3>
-                <p>Understandable, debuggable, reliable autonomy</p>
+                <h3>Implementation clarity</h3>
+                <p>Code-level guidance in your actual stack and platform.</p>
             </div>
         </div>
     </section>
 
     <section class="section" id="contact">
         <div class="section-header">
-            <h2>Let's build real-world autonomy together</h2>
-            <p>Tell us about your platform, use case, or challenge</p>
+            <h2>Let's rebuild your system</h2>
+            <p>What complex system needs architectural clarity?</p>
         </div>
         <div style="max-width: 600px; margin: 0 auto;">
-            <div class="form-success">
-                <p>✓ Message sent successfully! Our team will reply soon.</p>
-            </div>
             <form action="https://formspree.io/f/xwprjbzy" method="POST">
                 <input type="text" name="name" placeholder="Name" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="text" name="company" placeholder="Company">
-                <textarea name="message" placeholder="Tell us about your platform, use case, or challenge" required></textarea>
+                <textarea name="message" placeholder="Tell us about your system, challenge, or use case" required></textarea>
                 <button type="submit" class="btn-submit">Send Message</button>
             </form>
             <div style="margin-top: 3rem; text-align: center; color: #808080;">
                 <p><strong>NOVINCEP</strong></p>
-                               <p><a href="mailto:info@novincep.com" style="color: #1F6FEB;">info@novincep.com</a></p>
+                <p><a href="mailto:hello@novincep.com" style="color: #1F6FEB;">hello@novincep.com</a></p>
             </div>
         </div>
     </section>
@@ -963,4 +951,126 @@
     <footer>
         <div class="footer-logo">
             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 10v20h15c5 0 9 4 9 9v30c0 5-4 9-9 9H50v20L30 78c-5 0-9-4-9-9V39c0-5 4-9 9-9h10v50h10V50H40v-11h25v30H50" stroke="white" stroke-width="6" stroke-linecap="
+                <path d="M50 10v20h15c5 0 9 4 9 9v30c0 5-4 9-9 9H50v20L30 78c-5 0-9-4-9-9V39c0-5 4-9 9-9h10v50h10V50H40v-11h25v30H50" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="footer-logo-text">NOVINCEP</div>
+        </div>
+        <div class="footer-links">
+            <a href="#approach">Approach</a>
+            <a href="#applications">Applications</a>
+            <a href="#principles">Principles</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 NOVINCEP — Systems Architecture for Complex Operations.</p>
+        </div>
+    </footer>
+
+    <script>
+        const progressBar = document.querySelector('.progress-bar');
+        const navbar = document.getElementById('navbar');
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileOverlay = document.querySelector('.mobile-overlay');
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        const successModal = document.getElementById('successModal');
+        const form = document.querySelector('form');
+
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            progressBar.style.width = scrollPercentage + '%';
+
+            // Navbar scroll effect
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Scroll to top button
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Mobile menu toggle
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            mobileOverlay.classList.add('active');
+        });
+
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+        document.querySelector('.mobile-menu-close').addEventListener('click', closeMobileMenu);
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Scroll to top
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    showSuccessModal();
+                    form.reset();
+                }
+            });
+        });
+
+        function showSuccessModal() {
+            successModal.classList.add('show');
+        }
+
+        function closeModal() {
+            successModal.classList.remove('show');
+        }
+
+        // Close modal on overlay click
+        successModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Scroll indicator
+        document.querySelector('.scroll-indicator').addEventListener('click', () => {
+            document.querySelector('#approach').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
