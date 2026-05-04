@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robotics Lab Strategy for Applied Autonomy Education | NovIncep</title>
+  <meta name="description" content="NovIncep helps academic and applied innovation teams design robotics labs before major procurement, from simulation workflows and robotics infrastructure to safety, operations, and executive decision logic." />
+  <meta property="og:title" content="Robotics Lab Strategy for Applied Autonomy Education | NovIncep" />
+  <meta property="og:description" content="Design the operating logic of a robotics lab before buying the robots." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://novincep.com/lab" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --bg-soft: #efe9df;
+      --ink: #111827;
+      --muted: #5f6673;
+      --line: rgba(17, 24, 39, 0.12);
+      --line-strong: rgba(17, 24, 39, 0.22);
+      --card: rgba(255, 255, 255, 0.64);
+      --card-solid: #fffaf2;
+      --accent: #1f4f46;
+      --accent-soft: rgba(31, 79, 70, 0.12);
+      --accent-ink: #0f2f2a;
+      --shadow: 0 24px 70px rgba(17, 24, 39, 0.08);
+      --radius-lg: 32px;
+      --radius-md: 22px;
+      --radius-sm: 14px;
+      --max: 1180px;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background:
+        radial-gradient(circle at top left, rgba(31, 79, 70, 0.08), transparent 28rem),
+        linear-gradient(180deg, #faf7f1 0%, var(--bg) 42%, #f2ede5 100%);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(22px);
+      background: rgba(247, 244, 239, 0.76);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      min-height: 78px;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 680;
+      letter-spacing: -0.03em;
+      font-size: 18px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      border: 1px solid rgba(31, 79, 70, 0.2);
+      background:
+        linear-gradient(135deg, rgba(31, 79, 70, 0.18), rgba(255, 255, 255, 0.68)),
+        var(--bg-soft);
+      position: relative;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      top: 11px;
+      left: 11px;
+      box-shadow: 8px 8px 0 rgba(31, 79, 70, 0.22);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-cta {
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      padding: 10px 16px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.44);
+    }
+
+    main {
+      position: relative;
+    }
+
+    .section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 104px 28px;
+    }
+
+    .hero {
+      padding-top: 112px;
+      padding-bottom: 76px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(420px, 0.98fr);
+      gap: 52px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent-ink);
+      background: var(--accent-soft);
+      border: 1px solid rgba(31, 79, 70, 0.16);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: 13px;
+      font-weight: 560;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(31, 79, 70, 0.08);
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(46px, 6vw, 82px);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+      margin-bottom: 28px;
+      max-width: 760px;
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 21px);
+      line-height: 1.58;
+      max-width: 680px;
+      margin-bottom: 34px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 620;
+      border: 1px solid var(--line-strong);
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(17, 24, 39, 0.08);
+    }
+
+    .button.primary {
+      background: var(--ink);
+      color: #fffaf2;
+      border-color: var(--ink);
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.58);
+      color: var(--ink);
+    }
+
+    .hero-note {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 480px;
+    }
+
+    .lab-visual {
+      position: relative;
+      min-height: 560px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(255, 250, 242, 0.36)),
+        radial-gradient(circle at 80% 20%, rgba(31, 79, 70, 0.16), transparent 18rem),
+        rgba(255, 255, 255, 0.38);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .lab-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.52;
+      background-image:
+        linear-gradient(rgba(17, 24, 39, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17, 24, 39, 0.055) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at center, black 20%, transparent 78%);
+    }
+
+    .visual-label {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 13px;
+      backdrop-filter: blur(14px);
+    }
+
+    .status-light {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      animation: pulse 2.6s ease-in-out infinite;
+    }
+
+    .zone {
+      position: absolute;
+      border: 1px solid rgba(17, 24, 39, 0.12);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.42);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 44px rgba(17, 24, 39, 0.06);
+    }
+
+    .zone.sim {
+      top: 92px;
+      right: 30px;
+      width: 220px;
+      height: 150px;
+    }
+
+    .zone.physical {
+      left: 34px;
+      bottom: 42px;
+      width: 270px;
+      height: 190px;
+    }
+
+    .zone.ops {
+      right: 42px;
+      bottom: 64px;
+      width: 210px;
+      height: 170px;
+    }
+
+    .zone-title {
+      position: absolute;
+      left: 18px;
+      top: 16px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .screen {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      height: 72px;
+      border-radius: 15px;
+      background: rgba(17, 24, 39, 0.9);
+      overflow: hidden;
+    }
+
+    .screen::before,
+    .screen::after {
+      content: "";
+      position: absolute;
+      left: 16px;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(247, 244, 239, 0.66);
+      animation: flicker 4.2s ease-in-out infinite;
+    }
+
+    .screen::before {
+      top: 24px;
+      width: 112px;
+    }
+
+    .screen::after {
+      top: 42px;
+      width: 72px;
+      opacity: 0.52;
+      animation-delay: 900ms;
+    }
+
+    .robot-arm {
+      position: absolute;
+      width: 130px;
+      height: 120px;
+      left: 64px;
+      bottom: 42px;
+    }
+
+    .arm-base {
+      position: absolute;
+      left: 12px;
+      bottom: 0;
+      width: 58px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(31, 79, 70, 0.16);
+      border: 1px solid rgba(31, 79, 70, 0.18);
+    }
+
+    .arm-segment-one,
+    .arm-segment-two {
+      position: absolute;
+      height: 13px;
+      border-radius: 999px;
+      background: rgba(31, 79, 70, 0.68);
+      transform-origin: left center;
+    }
+
+    .arm-segment-one {
+      left: 42px;
+      bottom: 21px;
+      width: 64px;
+      transform: rotate(-52deg);
+      animation: armOne 6s ease-in-out infinite;
+    }
+
+    .arm-segment-two {
+      left: 84px;
+      bottom: 70px;
+      width: 54px;
+      transform: rotate(22deg);
+      animation: armTwo 6s ease-in-out infinite;
+    }
+
+    .arm-joint {
+      position: absolute;
+      left: 78px;
+      bottom: 62px;
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: #fffaf2;
+      border: 5px solid rgba(31, 79, 70, 0.72);
+    }
+
+    .rover {
+      position: absolute;
+      right: 24px;
+      bottom: 28px;
+      width: 92px;
+      height: 48px;
+      animation: rover 5.5s ease-in-out infinite;
+    }
+
+    .rover-body {
+      width: 76px;
+      height: 34px;
+      border-radius: 16px;
+      background: rgba(17, 24, 39, 0.78);
+      position: absolute;
+      top: 2px;
+      left: 8px;
+    }
+
+    .wheel {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(17, 24, 39, 0.55);
+      border: 4px solid rgba(255, 250, 242, 0.75);
+      bottom: 0;
+    }
+
+    .wheel.one { left: 12px; }
+    .wheel.two { right: 12px; }
+
+    .person {
+      position: absolute;
+      width: 18px;
+      height: 44px;
+    }
+
+    .person::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(17, 24, 39, 0.72);
+    }
+
+    .person::after {
+      content: "";
+      position: absolute;
+      top: 13px;
+      left: 6px;
+      width: 7px;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(17, 24, 39, 0.56);
+    }
+
+    .person.one { left: 86px; top: 270px; }
+    .person.two { right: 164px; top: 266px; }
+    .person.three { right: 92px; bottom: 244px; }
+
+    .system-card {
+      position: absolute;
+      left: 50%;
+      top: 46%;
+      transform: translate(-50%, -50%);
+      width: 238px;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255, 250, 242, 0.76);
+      border: 1px solid rgba(17, 24, 39, 0.12);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 22px 50px rgba(17, 24, 39, 0.08);
+    }
+
+    .system-card h3 {
+      font-size: 16px;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .stack-line {
+      height: 8px;
+      border-radius: 999px;
+      margin: 8px 0;
+      background: rgba(31, 79, 70, 0.16);
+      overflow: hidden;
+    }
+
+    .stack-line span {
+      display: block;
+      height: 100%;
+      width: 42%;
+      border-radius: 999px;
+      background: rgba(31, 79, 70, 0.66);
+      animation: dataBar 3.4s ease-in-out infinite;
+    }
+
+    .stack-line:nth-child(3) span { animation-delay: 500ms; width: 62%; }
+    .stack-line:nth-child(4) span { animation-delay: 950ms; width: 50%; }
+
+    .connection {
+      position: absolute;
+      background: rgba(31, 79, 70, 0.18);
+      transform-origin: left center;
+      overflow: hidden;
+    }
+
+    .connection::after {
+      content: "";
+      position: absolute;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(31, 79, 70, 0.72), transparent);
+      animation: flow 3.8s linear infinite;
+    }
+
+    .connection.a {
+      left: 265px;
+      top: 190px;
+      width: 135px;
+      height: 2px;
+      transform: rotate(-20deg);
+    }
+
+    .connection.b {
+      left: 300px;
+      bottom: 190px;
+      width: 145px;
+      height: 2px;
+      transform: rotate(16deg);
+    }
+
+    .connection.c {
+      right: 245px;
+      bottom: 205px;
+      width: 120px;
+      height: 2px;
+      transform: rotate(-8deg);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.65fr);
+      gap: 52px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 680;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: clamp(34px, 4.1vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+      margin-bottom: 0;
+    }
+
+    .section-lead {
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .problem-panel {
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: clamp(28px, 5vw, 58px);
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.55fr);
+      gap: 44px;
+    }
+
+    .problem-panel p {
+      color: var(--muted);
+      font-size: 19px;
+      margin-bottom: 0;
+    }
+
+    .quiet-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .quiet-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--ink);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 15px;
+    }
+
+    .quiet-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      flex: 0 0 auto;
+      margin-top: 8px;
+      opacity: 0.8;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      min-height: 220px;
+      padding: 28px;
+      border-radius: var(--radius-md);
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 46px rgba(17, 24, 39, 0.045);
+    }
+
+    .card-number {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 26px;
+    }
+
+    .card h3 {
+      font-size: 21px;
+      line-height: 1.18;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 15.5px;
+    }
+
+    .flow-panel {
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 5vw, 56px);
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at top right, rgba(31, 79, 70, 0.12), transparent 24rem),
+        rgba(255, 255, 255, 0.5);
+      box-shadow: var(--shadow);
+    }
+
+    .flow-map {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 24px;
+      align-items: stretch;
+    }
+
+    .flow-step {
+      position: relative;
+      min-height: 128px;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 250, 242, 0.74);
+      border: 1px solid rgba(17, 24, 39, 0.11);
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -11px;
+      width: 12px;
+      height: 2px;
+      background: rgba(31, 79, 70, 0.32);
+    }
+
+    .flow-step span {
+      display: block;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    .flow-step strong {
+      display: block;
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      font-size: 15px;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .audience-item {
+      padding: 22px 24px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.54);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-weight: 560;
+      text-align: center;
+    }
+
+    .phase-list {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+      counter-reset: phase;
+    }
+
+    .phase {
+      counter-increment: phase;
+      min-height: 190px;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .phase::before {
+      content: counter(phase, decimal-leading-zero);
+      color: var(--accent);
+      display: block;
+      font-size: 13px;
+      font-weight: 720;
+      letter-spacing: 0.08em;
+      margin-bottom: 34px;
+    }
+
+    .phase strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.22;
+      letter-spacing: -0.03em;
+    }
+
+    .outputs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .output-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 19px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink);
+      font-weight: 560;
+    }
+
+    .output-item span {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 740;
+      letter-spacing: 0.08em;
+      flex: 0 0 auto;
+    }
+
+    .why-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(320px, 0.64fr);
+      gap: 44px;
+      align-items: stretch;
+      border-radius: var(--radius-lg);
+      background: rgba(17, 24, 39, 0.94);
+      color: #fffaf2;
+      padding: clamp(30px, 5vw, 60px);
+      box-shadow: var(--shadow);
+    }
+
+    .why-panel h2 {
+      color: #fffaf2;
+      margin-bottom: 24px;
+    }
+
+    .why-panel p {
+      color: rgba(255, 250, 242, 0.7);
+      font-size: 19px;
+      margin-bottom: 0;
+    }
+
+    .why-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .why-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 250, 242, 0.14);
+      background: rgba(255, 250, 242, 0.055);
+      color: rgba(255, 250, 242, 0.84);
+    }
+
+    .domains {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .domain-pill {
+      padding: 13px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.52);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 560;
+    }
+
+    .closing {
+      text-align: center;
+      padding-top: 92px;
+      padding-bottom: 112px;
+    }
+
+    .closing-panel {
+      border-radius: var(--radius-lg);
+      padding: clamp(38px, 8vw, 88px) clamp(24px, 6vw, 70px);
+      background:
+        radial-gradient(circle at center top, rgba(31, 79, 70, 0.16), transparent 30rem),
+        rgba(255, 255, 255, 0.58);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .closing h2 {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 780px;
+      margin-bottom: 22px;
+    }
+
+    .closing p {
+      color: var(--muted);
+      font-size: 19px;
+      max-width: 680px;
+      margin: 0 auto 30px;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: 38px 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.58; }
+      50% { transform: scale(1.25); opacity: 1; }
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 0.32; transform: translateX(0); }
+      50% { opacity: 0.88; transform: translateX(8px); }
+    }
+
+    @keyframes dataBar {
+      0%, 100% { transform: translateX(0); opacity: 0.52; }
+      50% { transform: translateX(34%); opacity: 1; }
+    }
+
+    @keyframes flow {
+      from { transform: translateX(-120%); }
+      to { transform: translateX(260%); }
+    }
+
+    @keyframes rover {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-10px); }
+    }
+
+    @keyframes armOne {
+      0%, 100% { transform: rotate(-52deg); }
+      50% { transform: rotate(-46deg); }
+    }
+
+    @keyframes armTwo {
+      0%, 100% { transform: rotate(22deg); }
+      50% { transform: rotate(15deg); }
+    }
+
+    @media (max-width: 1040px) {
+      .hero,
+      .section-header,
+      .problem-panel,
+      .why-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 76px;
+      }
+
+      .lab-visual {
+        min-height: 520px;
+      }
+
+      .cards-grid,
+      .audience-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow-map,
+      .phase-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow-step:not(:last-child)::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        min-height: 68px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .section {
+        padding: 74px 20px;
+      }
+
+      .hero {
+        padding-top: 52px;
+        gap: 36px;
+      }
+
+      .cta-row {
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .lab-visual {
+        min-height: 460px;
+        border-radius: 24px;
+      }
+
+      .system-card {
+        width: 214px;
+      }
+
+      .zone.sim {
+        right: 18px;
+        width: 190px;
+      }
+
+      .zone.physical {
+        left: 18px;
+        width: 230px;
+      }
+
+      .zone.ops {
+        right: 20px;
+        width: 180px;
+      }
+
+      .person.one,
+      .person.two,
+      .person.three,
+      .connection {
+        display: none;
+      }
+
+      .cards-grid,
+      .audience-grid,
+      .flow-map,
+      .phase-list,
+      .outputs {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: auto;
+      }
+
+      .audience-item {
+        border-radius: 18px;
+        text-align: left;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header" aria-label="Site header">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="NovIncep home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>NovIncep</span>
+        </a>
+        <div class="nav-links" aria-label="Navigation links">
+          <a href="/">Home</a>
+          <a href="/lab" aria-current="page">Lab</a>
+          <a href="#outputs">Outputs</a>
+          <a href="#why">Why NovIncep</a>
+          <a class="nav-cta" href="#contact">Start a conversation</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section hero" aria-labelledby="hero-title">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Robotics lab architecture before procurement</div>
+          <h1 id="hero-title">Robotics Lab Strategy for Applied Autonomy Education</h1>
+          <p class="hero-copy">We help academic and applied innovation teams design robotics labs before major procurement, from learning architecture and simulation environments to physical systems, safety, operations, and executive decision logic.</p>
+          <div class="cta-row">
+            <a class="button primary" href="#contact">Start with a Lab Architecture Diagnostic</a>
+            <a class="button secondary" href="#design">See What We Design</a>
+          </div>
+          <p class="hero-note">For institutions that need practical robotics capability, not just a room full of equipment.</p>
+        </div>
+
+        <div class="lab-visual" aria-label="Animated robotics lab systems infographic">
+          <div class="lab-grid" aria-hidden="true"></div>
+          <div class="visual-label"><span class="status-light" aria-hidden="true"></span> Lab operating model</div>
+
+          <div class="zone sim">
+            <div class="zone-title">Simulation</div>
+            <div class="screen"></div>
+          </div>
+
+          <div class="zone physical">
+            <div class="zone-title">Physical lab</div>
+            <div class="robot-arm" aria-hidden="true">
+              <div class="arm-base"></div>
+              <div class="arm-segment-one"></div>
+              <div class="arm-segment-two"></div>
+              <div class="arm-joint"></div>
+            </div>
+            <div class="rover" aria-hidden="true">
+              <div class="rover-body"></div>
+              <div class="wheel one"></div>
+              <div class="wheel two"></div>
+            </div>
+          </div>
+
+          <div class="zone ops">
+            <div class="zone-title">Operations</div>
+            <div class="screen"></div>
+          </div>
+
+          <div class="system-card">
+            <h3>Simulation to physical workflow</h3>
+            <div class="stack-line"><span></span></div>
+            <div class="stack-line"><span></span></div>
+            <div class="stack-line"><span></span></div>
+          </div>
+
+          <div class="person one" aria-hidden="true"></div>
+          <div class="person two" aria-hidden="true"></div>
+          <div class="person three" aria-hidden="true"></div>
+          <div class="connection a" aria-hidden="true"></div>
+          <div class="connection b" aria-hidden="true"></div>
+          <div class="connection c" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="problem-title">
+        <div class="problem-panel">
+          <div>
+            <div class="section-kicker">The problem</div>
+            <h2 id="problem-title">Most robotics labs do not fail because of bad equipment.</h2>
+          </div>
+          <div>
+            <p>They fail because the learning goals, operating assumptions, simulation workflow, safety model, curriculum integration, maintenance logic, and procurement priorities were not defined clearly enough.</p>
+            <ul class="quiet-list" aria-label="Common lab planning gaps">
+              <li>Hardware is purchased before the lab operating model is clear.</li>
+              <li>Simulation, physical systems, and student workflows remain disconnected.</li>
+              <li>Safety, supervision, maintenance, and ownership are treated too late.</li>
+              <li>Leadership receives a budget request, not a decision framework.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="design" aria-labelledby="design-title">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">What we design</div>
+            <h2 id="design-title">What we design before procurement</h2>
+          </div>
+          <p class="section-lead">NovIncep translates robotics ambition into lab architecture, learning value, operational logic, and a phased decision framework.</p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <div class="card-number">01</div>
+            <h3>Lab Architecture</h3>
+            <p>Define the physical, digital, and operational structure of the lab, including zones, systems, workflows, and implementation logic.</p>
+          </article>
+          <article class="card">
+            <div class="card-number">02</div>
+            <h3>Learning and Curriculum Logic</h3>
+            <p>Translate educational goals into practical robotics capabilities, exercises, student progression, and applied learning pathways.</p>
+          </article>
+          <article class="card">
+            <div class="card-number">03</div>
+            <h3>Simulation to Physical Workflow</h3>
+            <p>Design the bridge between simulation environments and real robots, so teams can move from model to deployment logic.</p>
+          </article>
+          <article class="card">
+            <div class="card-number">04</div>
+            <h3>Robotics Stack and Infrastructure</h3>
+            <p>Map the software, compute, platforms, ROS or ROS2 environments, Isaac Sim workflows, Jetson or edge AI infrastructure, and supporting tools.</p>
+          </article>
+          <article class="card">
+            <div class="card-number">05</div>
+            <h3>Safety and Operational Readiness</h3>
+            <p>Define safety assumptions, operating procedures, access logic, supervision model, risk areas, and operational responsibilities.</p>
+          </article>
+          <article class="card">
+            <div class="card-number">06</div>
+            <h3>Procurement Logic and Prioritization</h3>
+            <p>Turn technical ambition into a phased procurement framework that reduces overbuying, underuse, and unclear ownership.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="flow-title">
+        <div class="flow-panel">
+          <div class="section-header" style="margin-bottom: 18px;">
+            <div>
+              <div class="section-kicker">System flow</div>
+              <h2 id="flow-title">From learning goals to executive decisions</h2>
+            </div>
+            <p class="section-lead">A clean planning sequence that connects educational intent, technical infrastructure, lab operations, and procurement logic.</p>
+          </div>
+
+          <div class="flow-map" aria-label="Lab planning flow">
+            <div class="flow-step"><span>01</span><strong>Learning goals</strong></div>
+            <div class="flow-step"><span>02</span><strong>Lab zones</strong></div>
+            <div class="flow-step"><span>03</span><strong>Simulation layer</strong></div>
+            <div class="flow-step"><span>04</span><strong>Physical robotics</strong></div>
+            <div class="flow-step"><span>05</span><strong>Safety and operations</strong></div>
+            <div class="flow-step"><span>06</span><strong>Procurement priorities</strong></div>
+            <div class="flow-step"><span>07</span><strong>Executive decision document</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="audience-title">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Who this is for</div>
+            <h2 id="audience-title">Built for institutions that need practical robotics capability</h2>
+          </div>
+          <p class="section-lead">The work is designed for institutions that need a credible lab plan before committing budget, space, equipment, and staff attention.</p>
+        </div>
+
+        <div class="audience-grid">
+          <div class="audience-item">Colleges and universities</div>
+          <div class="audience-item">Engineering and mechatronics programs</div>
+          <div class="audience-item">Applied AI labs</div>
+          <div class="audience-item">Regional innovation centers</div>
+          <div class="audience-item">Donor funded lab initiatives</div>
+          <div class="audience-item">Workforce and technical training environments</div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="process-title">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Process</div>
+            <h2 id="process-title">From concept to operating lab</h2>
+          </div>
+          <p class="section-lead">A phased path that turns ambition into a practical roadmap for leadership, faculty, operations, and procurement.</p>
+        </div>
+
+        <div class="phase-list">
+          <div class="phase"><strong>Define what the lab must enable</strong></div>
+          <div class="phase"><strong>Map the lab architecture</strong></div>
+          <div class="phase"><strong>Evaluate equipment logic</strong></div>
+          <div class="phase"><strong>Connect simulation to physical systems</strong></div>
+          <div class="phase"><strong>Define safety and operations</strong></div>
+          <div class="phase"><strong>Produce an executive ready roadmap</strong></div>
+        </div>
+      </section>
+
+      <section class="section" id="outputs" aria-labelledby="outputs-title">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Deliverables</div>
+            <h2 id="outputs-title">Typical outputs</h2>
+          </div>
+          <p class="section-lead">The goal is not to produce another abstract concept note. The output should help leadership decide, prioritize, and move toward launch.</p>
+        </div>
+
+        <div class="outputs">
+          <div class="output-item"><span>01</span> Executive summary for leadership</div>
+          <div class="output-item"><span>02</span> Lab concept and goals</div>
+          <div class="output-item"><span>03</span> Capability and use case map</div>
+          <div class="output-item"><span>04</span> Simulation to physical architecture</div>
+          <div class="output-item"><span>05</span> Equipment review and procurement priorities</div>
+          <div class="output-item"><span>06</span> ROS, Isaac Sim, and Jetson recommendations</div>
+          <div class="output-item"><span>07</span> Safety and operational risk map</div>
+          <div class="output-item"><span>08</span> Roadmap toward launch</div>
+          <div class="output-item"><span>09</span> Open decisions for management and procurement</div>
+          <div class="output-item"><span>10</span> Ecosystem opportunity map</div>
+        </div>
+      </section>
+
+      <section class="section" id="why" aria-labelledby="why-title">
+        <div class="why-panel">
+          <div>
+            <div class="section-kicker" style="color: rgba(255, 250, 242, 0.72);">Why NovIncep</div>
+            <h2 id="why-title">NovIncep does not start from a shopping list. It starts from the operating model.</h2>
+            <p>We work at the intersection of systems architecture, robotics, simulation environments, edge AI, operational decision logic, and implementation clarity.</p>
+          </div>
+          <div class="why-grid">
+            <div class="why-item">Systems architecture</div>
+            <div class="why-item">Robotics and autonomy logic</div>
+            <div class="why-item">Simulation environments</div>
+            <div class="why-item">Edge AI infrastructure</div>
+            <div class="why-item">Operational decision logic</div>
+            <div class="why-item">Implementation clarity</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="domains-title">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Relevant domains</div>
+            <h2 id="domains-title">A restrained technical context, without a logo wall</h2>
+          </div>
+          <p class="section-lead">Technology names are treated as relevant workflow environments, not as implied partnerships or endorsements.</p>
+        </div>
+
+        <div class="domains">
+          <span class="domain-pill">Robotics and autonomy systems</span>
+          <span class="domain-pill">NVIDIA Isaac Sim workflows</span>
+          <span class="domain-pill">ROS and ROS2 learning environments</span>
+          <span class="domain-pill">Jetson and edge AI infrastructure</span>
+          <span class="domain-pill">Simulation to physical architecture</span>
+          <span class="domain-pill">Lab planning</span>
+          <span class="domain-pill">Procurement risk reduction</span>
+          <span class="domain-pill">Ecosystem mapping</span>
+        </div>
+      </section>
+
+      <section class="section closing" id="contact" aria-labelledby="closing-title">
+        <div class="closing-panel">
+          <div class="section-kicker">Start here</div>
+          <h2 id="closing-title">Plan the lab before buying the robots.</h2>
+          <p>A robotics lab should be built around capability, learning value, and operational logic, not only hardware acquisition.</p>
+          <a class="button primary" href="mailto:hello@novincep.com?subject=Lab%20Strategy%20Conversation">Request a Lab Strategy Conversation</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>© NovIncep. Robotics lab strategy for applied autonomy education.</div>
+        <div>Architecture, logic, and clarity before procurement.</div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
