@@ -836,6 +836,125 @@
       gap: 12px;
     }
 
+    .engagement-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .engagement-card {
+      position: relative;
+      min-height: 320px;
+      padding: 30px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 46px rgba(17, 24, 39, 0.045);
+      overflow: hidden;
+    }
+
+    .engagement-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(31, 79, 70, 0.12), transparent 15rem);
+      opacity: 0.84;
+      pointer-events: none;
+    }
+
+    .engagement-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .phase-label {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(31, 79, 70, 0.16);
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 720;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .engagement-card h3 {
+      font-size: 24px;
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+      margin-bottom: 16px;
+    }
+
+    .engagement-card p {
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-size: 15.5px;
+    }
+
+    .engagement-points {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .engagement-points li {
+      color: var(--ink);
+      font-size: 14px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+
+    .international-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(320px, 0.68fr);
+      gap: 44px;
+      align-items: stretch;
+      border-radius: var(--radius-lg);
+      padding: clamp(30px, 5vw, 58px);
+      background:
+        radial-gradient(circle at top left, rgba(31, 79, 70, 0.13), transparent 24rem),
+        rgba(255, 255, 255, 0.54);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .international-panel p {
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 0;
+    }
+
+    .region-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .region-item {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255, 250, 242, 0.68);
+      border: 1px solid var(--line);
+    }
+
+    .region-item strong {
+      display: block;
+      font-size: 16px;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .region-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
     .domain-pill {
       padding: 13px 16px;
       border-radius: 999px;
@@ -944,8 +1063,13 @@
       }
 
       .cards-grid,
-      .audience-grid {
+      .audience-grid,
+      .engagement-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .international-panel {
+        grid-template-columns: 1fr;
       }
 
       .flow-map,
@@ -1019,6 +1143,7 @@
       .audience-grid,
       .flow-map,
       .phase-list,
+      .engagement-grid,
       .outputs {
         grid-template-columns: 1fr;
       }
@@ -1235,6 +1360,54 @@
         </div>
       </section>
 
+      <section class="section" aria-labelledby="engagement-title">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Engagement phases</div>
+            <h2 id="engagement-title">A clear path from diagnostic to launch readiness</h2>
+          </div>
+          <p class="section-lead">Institutions can start with a focused architecture phase, then continue into detailed planning, procurement logic, and launch readiness support.</p>
+        </div>
+
+        <div class="engagement-grid">
+          <article class="engagement-card">
+            <div class="phase-label">Phase 1</div>
+            <h3>Lab Architecture Diagnostic</h3>
+            <p>A focused strategy phase that defines what the lab must enable, how it should operate, and what leadership needs to decide before procurement.</p>
+            <ul class="engagement-points">
+              <li>Learning goals and lab capability definition</li>
+              <li>Operating model and lab zone logic</li>
+              <li>Simulation, robotics, safety, and procurement assumptions</li>
+              <li>Executive ready diagnostic summary</li>
+            </ul>
+          </article>
+
+          <article class="engagement-card">
+            <div class="phase-label">Phase 2</div>
+            <h3>Detailed Lab Design and Procurement Logic</h3>
+            <p>A planning and specification phase that turns the concept into equipment priorities, infrastructure assumptions, workflow design, and procurement decision logic.</p>
+            <ul class="engagement-points">
+              <li>Detailed lab zones and infrastructure requirements</li>
+              <li>Simulation to physical architecture</li>
+              <li>Equipment review and phased procurement priorities</li>
+              <li>Vendor and ecosystem opportunity mapping</li>
+            </ul>
+          </article>
+
+          <article class="engagement-card">
+            <div class="phase-label">Phase 3</div>
+            <h3>Implementation Support and Launch Readiness</h3>
+            <p>A support phase for moving from plan to operating lab, working with institutional teams, vendors, safety advisors, and operational stakeholders.</p>
+            <ul class="engagement-points">
+              <li>Setup coordination and readiness checks</li>
+              <li>Operational procedures and training logic</li>
+              <li>Support for safety advisor coordination</li>
+              <li>Launch roadmap and open decision tracking</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
       <section class="section" id="outputs" aria-labelledby="outputs-title">
         <div class="section-header">
           <div>
@@ -1272,6 +1445,30 @@
             <div class="why-item">Edge AI infrastructure</div>
             <div class="why-item">Operational decision logic</div>
             <div class="why-item">Implementation clarity</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="international-title">
+        <div class="international-panel">
+          <div>
+            <div class="section-kicker">International work</div>
+            <h2 id="international-title">Built with a European applied robotics perspective</h2>
+            <p>NovIncep works across international deep tech and applied innovation contexts, with a practical understanding of how European institutions approach robotics capability, procurement, education, and ecosystem development.</p>
+          </div>
+          <div class="region-list">
+            <div class="region-item">
+              <strong>Scandinavia</strong>
+              <span>Applied autonomy, robotics education, simulation driven development, and industry connected innovation environments.</span>
+            </div>
+            <div class="region-item">
+              <strong>Central Europe</strong>
+              <span>Engineering programs, applied research environments, technical training, and industry oriented robotics capability building.</span>
+            </div>
+            <div class="region-item">
+              <strong>International applied innovation</strong>
+              <span>Cross border robotics planning, ecosystem mapping, simulation workflows, and practical implementation logic for institutions moving from concept to capability.</span>
+            </div>
           </div>
         </div>
       </section>
